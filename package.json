@@ -34,5 +34,8 @@
     "url": "git://github.com/nitrous/wilot.git"
   },
   "author": "nitrous",
-  "license": ""
+  "license": "",
+  "devDependencies": {
+    "sails-hook-babel": "^5.0.1"
+  }
 }
