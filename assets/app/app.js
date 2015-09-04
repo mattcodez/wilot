@@ -2,4 +2,4 @@
 
 var _  = require('lodash');
 var React = require('react');
-var s = require('./helloworld.js');
+var s = require('./components/taskItem.js');
