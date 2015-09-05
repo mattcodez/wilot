@@ -1,16 +1,12 @@
 var React = require('react');
 var $ = require('../../vendor/jquery/dist/jquery.js');
 
-var taskItemBox = React.createClass({
+module.exports = React.createClass({
   render: function() {
     return (
       <div className="taskItemBox">
-        hi
+        <h2>hi</h2>
       </div>
     );
   }
 });
-React.render(
-  <taskItemBox />,
-  document.getElementById('itemList')
-);

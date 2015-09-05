@@ -2,4 +2,9 @@
 
 var _  = require('lodash');
 var React = require('react');
-var s = require('./components/taskItem.js');
+var TaskItemBox = require('./components/taskItem.js');
+
+React.render(
+  <TaskItemBox />,
+  document.getElementById('itemList')
+);
