@@ -6,6 +6,12 @@
  */
 
 module.exports = {
-
+  main: function(req, res){
+    TaskItems.find().populate('children')
+    .then(function(taskItems){
+      res.view('homepage', {taskItems:taskItems});
+    })
+    .catch(console.log);
+  }
 };
 

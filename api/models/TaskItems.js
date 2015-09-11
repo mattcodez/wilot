@@ -11,7 +11,8 @@ module.exports = {
   attributes: {
     contents:      {type:'string'},
     dateCompleted: {type:'datetime'},
-    children:      {collection:'TaskItems'}
+    parentTask:    {model:'TaskItems'},
+    children:      {collection:'TaskItems', via:'parentTask'}
   }
 };
 
