@@ -1,4 +1,13 @@
 <h1>Where did I leave off today?</h1>
+
+<div id="taskList"><%
+  writeNodes(taskItems);%>
+</div>
+
+<form class="new">
+  <input type="text" name="contents" placeholder="Task" >
+</form>
+
 <%
 function writeNodes(nodes){
   for (var i = 0; i < nodes.length; i++){
@@ -10,10 +19,4 @@ function writeNodes(nodes){
       </div><%
     }
   }
-}
-
-writeNodes(taskItems);
-%>
-<form class="new">
-  <input type="text" name="contents" placeholder="Task" >
-</form>
+}%>
