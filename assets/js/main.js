@@ -8,7 +8,7 @@ $(function(){
     .then(function(taskItem){
       taskList.addTask(taskItem);
     })
-    .error(function(err){
+    .fail(function(err){
       alert(err);
     });
 
