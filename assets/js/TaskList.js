@@ -4,5 +4,14 @@ var TaskList = function(opts){
 TaskList.prototype = {};
 
 TaskList.prototype.addTask = function(taskItem){
-  this.el.append($('<div></div>').text(taskItem.contents));
+  var newTask = this.el.append($('<div></div>').text(taskItem.contents));
+  this.el.find('form.new.sub').remove();
+  newTask.append(
+    $('<form></form>').addClass('new sub')
+      .append($('<input/>').attr({
+        name: 'contents',
+        type: 'text',
+        placeholder: 'Sub Task'
+      }))
+  );
 };
