@@ -1,6 +1,6 @@
 $(function(){
   var taskList = new TaskList({el:'#taskList'});
-  $('form.new').on('submit', function(e){
+  $(document.body).on('submit', 'form.new', function(e){
     e.preventDefault();
 
     var form = $(this);
