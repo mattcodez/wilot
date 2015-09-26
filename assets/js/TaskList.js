@@ -3,7 +3,7 @@ var TaskList = function(opts){
 };
 TaskList.prototype = {};
 
-TaskList.prototype.addTasks = function(taskItems, container){
+TaskList.prototype.addTasks = function(taskItems, container, parentId){
   var newContainer = $('<div class="taskList"></div>');
   container.append(newContainer);
   
@@ -11,33 +11,41 @@ TaskList.prototype.addTasks = function(taskItems, container){
     this.addTask(taskItems[i], newContainer);
   }
   
-  container.append($('<form class="new"></form>')
-    .append(
-      $('<input type="text" name="contents" placeholder="New Task" >')
-  ));
+  newContainer.append(
+    this.getNewForm(parentId)
+  );
 };
 
 TaskList.prototype.addTask = function(taskItem, container){
   var newTask = $('<div class="item"></div>')
     .text(taskItem.contents)
     .append(
-      $('<form></form>')
-        .addClass('new sub')
-        .append($('<input/>').attr({
-          name: 'contents',
-          type: 'text',
-          placeholder: 'Sub Task'
-        }))
-        .append($('<input/>').attr({
-          name: 'parentTask',
-          type: 'hidden',
-          value: taskItem.id
-        }))
+      this.getNewForm(taskItem.id)
     );
   
   container.append(newTask);
   
   if (taskItem.children){
-    this.addTasks(taskItem.children, newTask);
+    this.addTasks(taskItem.children, newTask, taskItem.id);
   } 
+}
+
+TaskList.prototype.getNewForm = function(parentId){
+  var form = $('<form class="newTaskItem"></form>')
+    .append($('<input/>').attr({
+      name: 'contents',
+      type: 'text',
+      placeholder: 'New Task'
+    })
+  );
+  
+  if (parentId){
+    form.append($('<input/>').attr({
+      name: 'parentTask',
+      type: 'hidden',
+      value: parentId
+    }));
+  }
+  
+  return form;
 };
