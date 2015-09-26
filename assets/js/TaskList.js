@@ -6,9 +6,15 @@ TaskList.prototype = {};
 TaskList.prototype.addTasks = function(taskItems, container){
   var newContainer = $('<div class="taskList"></div>');
   container.append(newContainer);
+  
   for (var i = 0; i < taskItems.length; i++){
     this.addTask(taskItems[i], newContainer);
   }
+  
+  container.append($('<form class="new"></form>')
+    .append(
+      $('<input type="text" name="contents" placeholder="New Task" >')
+  ));
 };
 
 TaskList.prototype.addTask = function(taskItem, container){
