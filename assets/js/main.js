@@ -11,7 +11,7 @@ $(function(){
     var form = $(this);
     $.post('/TaskItems', form.serialize())
     .then(function(taskItem){
-      taskList.addTask(taskItem, form.closest('.taskList'));
+      taskList.addTask(taskItem, form.closest('.item').find('.taskList'));
       form[0].reset();
     })
     .fail(function(err){

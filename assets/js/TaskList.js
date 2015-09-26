@@ -32,6 +32,6 @@ TaskList.prototype.addTask = function(taskItem, container){
   container.append(newTask);
   
   if (taskItem.children){
-    this.addTasks(taskItem.children, container);
+    this.addTasks(taskItem.children, newTask);
   } 
 };
