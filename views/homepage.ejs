@@ -1,22 +1,11 @@
 <h1>Where did I leave off today?</h1>
 
-<div id="taskList"><%
-  writeNodes(taskItems);%>
-</div>
+<div id="taskList"></div>
 
 <form class="new">
   <input type="text" name="contents" placeholder="New Task" >
 </form>
 
-<%
-function writeNodes(nodes){
-  for (var i = 0; i < nodes.length; i++){
-    var node = nodes[i];%>
-    <div class="item"><%= node.contents %></div><%
-    if (node.children && node.children.length > 0){%>
-      <div class="children"><%
-        writeNodes(node.children);%>
-      </div><%
-    }
-  }
-}%>
+<script>
+  var preload_taskItems = <%- JSON.stringify(taskItems) %>;
+</script>

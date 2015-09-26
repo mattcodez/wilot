@@ -1,5 +1,10 @@
+/*global TaskList*/
+/*global preload_taskItems*/
+
 $(function(){
   var taskList = new TaskList({el:'#taskList'});
+  taskList.addTasks(preload_taskItems, false);
+  
   $(document.body).on('submit', 'form.new', function(e){
     e.preventDefault();
 
