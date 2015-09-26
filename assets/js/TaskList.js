@@ -3,34 +3,35 @@ var TaskList = function(opts){
 };
 TaskList.prototype = {};
 
-TaskList.prototype.addTasks = function(taskItems, areChildren){
+TaskList.prototype.addTasks = function(taskItems, container){
+  var newContainer = $('<div class="taskList"></div>');
+  container.append(newContainer);
   for (var i = 0; i < taskItems.length; i++){
-    this.addTask(taskItems[i], areChildren);
+    this.addTask(taskItems[i], newContainer);
   }
 };
 
-TaskList.prototype.addTask = function(taskItem, isChild){
-  var newTask = this.el.append(
-    $('<div class="item"></div>')
-      .text(taskItem.contents)
-  );
-  //this.el.find('form.new.sub').remove();
-  newTask.append(
-    $('<form></form>')
-      .addClass('new sub')
-      .append($('<input/>').attr({
-        name: 'contents',
-        type: 'text',
-        placeholder: 'Sub Task'
-      }))
-      .append($('<input/>').attr({
-        name: 'parentTask',
-        type: 'hidden',
-        value: taskItem.id
-      }))
-  );
+TaskList.prototype.addTask = function(taskItem, container){
+  var newTask = $('<div class="item"></div>')
+    .text(taskItem.contents)
+    .append(
+      $('<form></form>')
+        .addClass('new sub')
+        .append($('<input/>').attr({
+          name: 'contents',
+          type: 'text',
+          placeholder: 'Sub Task'
+        }))
+        .append($('<input/>').attr({
+          name: 'parentTask',
+          type: 'hidden',
+          value: taskItem.id
+        }))
+    );
+  
+  container.append(newTask);
   
   if (taskItem.children){
-    this.addTasks(taskItem.children, true);  
+    this.addTasks(taskItem.children, container);
   } 
 };
