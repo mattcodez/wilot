@@ -3,6 +3,11 @@ var TaskList = function(opts){
 };
 TaskList.prototype = {};
 
+TaskList.prototype.renderTasks = function(taskItems){
+  this.el.empty();
+  this.addTasks(taskItems, this.el);
+};
+
 TaskList.prototype.addTasks = function(taskItems, container, parentId){
   var newContainer = $('<div class="taskList"></div>');
   container.append(newContainer);
@@ -18,17 +23,21 @@ TaskList.prototype.addTasks = function(taskItems, container, parentId){
 
 TaskList.prototype.addTask = function(taskItem, container){
   var newTask = $('<div class="item"></div>')
-    .text(taskItem.contents)
-    .append(
+    .text(taskItem.contents);
+  
+  //If taskItem has children, it's taskList will have the form
+  if (taskItem.children && taskItem.children.length > 0){
+    newTask.append(
       this.getNewForm(taskItem.id)
     );
+  }
   
   container.append(newTask);
   
   if (taskItem.children){
     this.addTasks(taskItem.children, newTask, taskItem.id);
-  } 
-}
+  }
+};
 
 TaskList.prototype.getNewForm = function(parentId){
   var form = $('<form class="newTaskItem"></form>')
