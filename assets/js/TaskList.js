@@ -25,8 +25,9 @@ TaskList.prototype.addTask = function(taskItem, container){
   var newTask = $('<div class="item"></div>')
     .text(taskItem.contents);
   
+  //Only add a form if task has no children
   //If taskItem has children, it's taskList will have the form
-  if (taskItem.children && taskItem.children.length > 0){
+  if (taskItem.children && taskItem.children.length === 0){
     newTask.append(
       this.getNewForm(taskItem.id)
     );
@@ -34,7 +35,7 @@ TaskList.prototype.addTask = function(taskItem, container){
   
   container.append(newTask);
   
-  if (taskItem.children){
+  if (taskItem.children && taskItem.children.length > 0){
     this.addTasks(taskItem.children, newTask, taskItem.id);
   }
 };
