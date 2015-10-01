@@ -44,7 +44,8 @@ TaskList.prototype.getNewForm = function(parentId){
     .append($('<input/>').attr({
       name: 'contents',
       type: 'text',
-      placeholder: 'New Task'
+      placeholder: 'New Task',
+      required: ''
     })
   );
   

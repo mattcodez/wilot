@@ -1,8 +1,17 @@
 .taskList {
-  border:1px solid black;
-  padding:1rem;
+  padding: 1rem;
   
   .taskList{
-    margin-left: 2rem;
+    margin-left: 1rem;
+  }
+}
+
+.item {
+  border: 1px solid black;
+  margin-top: 1rem;
+  padding: 1rem;
+
+  & + form{
+    margin-top: 0.5rem;
   }
 }

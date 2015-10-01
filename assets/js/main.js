@@ -29,5 +29,5 @@ $(function(){
 
 function buildTasks(){
   $.get('/TaskItems')
-  .then(taskList.renderTasks);
+  .then(taskList.renderTasks.bind(taskList));
 }
