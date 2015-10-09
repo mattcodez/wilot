@@ -27,7 +27,7 @@ TaskList.prototype.addTask = function(taskItem, container){
   
   //Only add a form if task has no children
   //If taskItem has children, it's taskList will have the form
-  if (taskItem.children && taskItem.children.length === 0){
+  if (!taskItem.children || taskItem.children.length === 0){
     newTask.append(
       this.getNewForm(taskItem.id)
     );
